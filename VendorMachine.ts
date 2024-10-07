@@ -32,18 +32,19 @@ class VendorMachine {
   public shootWithFoot() {
     this.isOn = false;
 
-    if (this.money < 20) {
-      throw new Error("bien essayé, mais y'a plus de sous");
-    }
-
-    this.money -= 20;
-
-    if (this.snacksQty < 5) {
-      throw new Error("Il n'y a malheuresement plus de stock");
-    }
-
-    this.snacksQty -= 5;
+    this.dropMoney();
+    this.dropSnacks();
   }
+
+  private dropMoney() {
+    let moneyToDrop = 20;
+    if (this.money < 20) {
+      moneyToDrop = this.money;
+    }
+    this.money = this.money - moneyToDrop;
+  }
+
+  private dropSnacks() {}
 }
 
 const vendorMachine = new VendorMachine();
